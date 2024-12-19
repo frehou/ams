@@ -15,11 +15,11 @@ Ce projet permet d'extraire des réseaux de personnages à partir de chapitres d
 
 Pour installer les dépendances, exécutez la commande suivante :
 
-```bash
-pip install stanza networkx pandas flair
+**pip install stanza networkx pandas flair**
+
 Assurez-vous également d'avoir téléchargé le modèle linguistique fr pour Stanza et le modèle flair/ner-english-large pour Flair. Ces modèles sont automatiquement téléchargés lors de la première exécution si non présents.
 
-Structure des fichiers
+## Structure des fichiers
 extraction.py : Fichier principal contenant le code pour extraire les réseaux de personnages.
 antidic.txt : Fichier contenant l'antidictionnaire utilisé pour filtrer les mots indésirables.
 lca et paf : Dossiers contenant les chapitres prétraités des livres.

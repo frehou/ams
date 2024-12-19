@@ -1,71 +1,42 @@
-README: Extraction de Réseaux de Personnages
+# Extraction de Réseaux de Personnages
 
-Présentation
+Ce projet permet d'extraire des réseaux de personnages à partir de chapitres de livres et de générer un fichier CSV pour soumission au leaderboard Kaggle.
 
-Ce programme permet d'extraire des réseaux de personnages à partir des chapitres d'un livre, en vue de soumettre un fichier CSV au leaderboard Kaggle. Les réseaux sont construits à l'aide de co-occurrences des noms de personnages dans le texte.
+## Prérequis
 
-Prérequis
+- **Python 3.8 ou supérieur** installé.
+- Les bibliothèques Python suivantes :
+  - `stanza`
+  - `networkx`
+  - `pandas`
+  - `flair`
+  - `re`
+  - `os`
 
-Python 3.7 ou supérieur
+Pour installer les dépendances, exécutez la commande suivante :
 
-Bibliothèques Python suivantes :
-
-stanza
-
-networkx
-
-pandas
-
-os
-
-re
-
-flair
-
-Pour installer les dépendances, exécutez :
-
+```bash
 pip install stanza networkx pandas flair
+Assurez-vous également d'avoir téléchargé le modèle linguistique fr pour Stanza et le modèle flair/ner-english-large pour Flair. Ces modèles sont automatiquement téléchargés lors de la première exécution si non présents.
 
-Fichiers requis
+Structure des fichiers
+extraction.py : Fichier principal contenant le code pour extraire les réseaux de personnages.
+antidic.txt : Fichier contenant l'antidictionnaire utilisé pour filtrer les mots indésirables.
+lca et paf : Dossiers contenant les chapitres prétraités des livres.
 
-antidic.txt :
+Les fichiers des chapitres doivent être nommés sous la forme chapter_X.txt.preprocessed, où X correspond au numéro du chapitre.
 
-Un fichier contenant un antidictionnaire (mots à exclure) doit être présent dans le même dossier que le fichier Python extraction.py.
-
-Dossiers de chapitres :
-
-Deux dossiers, lca et paf, contenant les fichiers prétraités des chapitres :
-
-Les fichiers doivent avoir le format chapter_X.txt.preprocessed (où X est le numéro du chapitre).
-
-Instructions pour l'exécution
-
-Assurez-vous que les fichiers suivants sont présents dans le répertoire de travail :
-
-extraction.py
-
-antidic.txt
-
-Dossiers lca et paf avec leurs chapitres respectifs.
-
-Lancez le script Python extraction.py :
+## Instructions
+Placez le fichier antidic.txt dans le même dossier que extraction.py.
+Assurez-vous que les dossiers lca et paf contiennent les fichiers des chapitres prétraités.
+Exécutez le programme avec la commande suivante :
 
 python extraction.py
 
-Une fois l'exécution terminée, un fichier my_submission.csv sera généré dans le répertoire de travail. Ce fichier contient les graphes de personnages, prêts à être soumis au leaderboard Kaggle.
+## Résultat
+Le programme génère un fichier my_submission.csv dans le répertoire actuel. Ce fichier contient les graphes de personnages pour les livres spécifiés.
 
-Structure du fichier CSV
+## Exemple de sortie
+Une fois le script exécuté, vous verrez des logs indiquant les étapes du traitement, comme l'extraction des personnages et la génération des graphes.
 
-Le fichier CSV généré aura les colonnes suivantes :
-
-ID : Identifiant unique pour chaque chapitre.
-
-graphml : Représentation du graphe des personnages au format GraphML.
-
-Notes supplémentaires
-
-Les graphes sont construits en utilisant les co-occurrences des noms de personnages dans une fenêtre glissante de 25 mots.
-
-Les alias de personnages sont regroupés pour garantir la précision des connexions dans les graphes.
-
-Assurez-vous que les chapitres sont prétraités et placés correctement dans les dossiers lca et paf avant de lancer le programme.
+Le fichier my_submission.csv est prêt pour être soumis au leaderboard Kaggle.
